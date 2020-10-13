@@ -1,5 +1,10 @@
-
+// addEventListener('resize', () => {
+//   canvas.width = innerWidth
+//   canvas.height = innerHeight
+// })
     
+
+
     //'fish circles'
         var fish = [];
         var velocity = 2; 
@@ -29,7 +34,7 @@
             // function that determines the velocity of the background images
              function assignRate() {
                 for(var i = 0; i < fish.length; i++) {
-                var assignedRate = Math.random() * velocity 
+                var assignedRate = Math.random() * velocity -1
                 fish[i].rate = assignedRate;
                 }
             }
@@ -63,7 +68,7 @@
                         }
                 }
             }
-//////////////////////////////////////
+////////////////////////////////////////////////////////////////
 //spermy fish
 var Swimmers = Base.extend({
 	initialize: function(position, maxSpeed, maxForce) {
@@ -83,47 +88,57 @@ var Swimmers = Base.extend({
 		this.lastLoc = this.position.clone();
 		this.borders();
 		this.update();
-		this.calculateTail();
+		// this.tail();
 		this.moveHead();
 	},
 
-	calculateTail: function() {
-		var segments = this.path.segments,
-			shortSegments = this.shortPath.segments;
-		var speed = this.vector.length;
-		var pieceLength = 2 + speed / 3;
-		var point = this.position;
-		segments[0].point = shortSegments[0].point = point;
-		// Chain goes the other way than the movement
-		var lastVector = -this.vector;
-		for (var i = 1; i < this.amount; i++) {
-			var vector = segments[i].point - point-1;
-			this.count += speed * 5;
-			var wave = Math.sin((this.count + i * 5) / 900);
-			var sway = lastVector.rotate(50).normalize(wave);
-			point += lastVector.normalize(pieceLength) + sway;
-			segments[i].point = point;
-			if (i < 3)
-				shortSegments[i].point = point;
-			lastVector = vector;
-		}
-		this.path.smooth();
-	},
+	// tail: function() {
+	// 	var segments = this.path.segments,
+	// 		shortSegments = this.shortPath.segments;
+	// 	var speed = this.vector.length;
+	// 	var pieceLength = 2 + speed / 3;
+	// 	var point = this.position;
+	// 	segments[0].point = shortSegments[0].point = point;
+	// 	//  goes other way than movement
+	// 	var lastVector = -this.vector;
+	// 	for (var i = 1; i < this.amount; i++) {
+	// 		var vector = segments[i].point - point-1;
+	// 		this.count += speed * 5;
+	// 		var wave = Math.sin((this.count + i * 5) / 900);
+	// 		var sway = lastVector.rotate(50).normalize(wave);
+	// 		point += lastVector.normalize(pieceLength) + sway;
+	// 		segments[i].point = point;
+	// 		if (i < 3)
+	// 			shortSegments[i].point = point;
+	// 		lastVector = vector;
+	// 	}
+	// 	this.path.smooth();
+	// },
 
     
 	createItems: function() {
-        function randomNumber(min,max) {
-                return Math.floor(Math.random() * (max - min + 1) + min);
-            }
-		this.head = 
-            new Path.RegularPolygon({
-            center: [10, 10],
-            sides: 5,
-            radius: 8,
+     
+		this.head2 = new Path({ ////giant fish
+	            segments: [[40, 20], [40, 150], [150,80], [170, 40], 
+			   [300,60], [300, 140], [170 ,140], [150, 80],
+			   [39,19]
+			  ],
+            // new Path.RegularPolygon({
+            // center: [10, 10],
+            // sides: 5,
+            radius: 3,
             fillColor: 'black'
+            // });
             });
 
-            new Path.Circle(new Point(view.size.width, view.size.height) * Point.random(), randomNumber(0.5, 7))
+            this.head = new Path(); ///little empty triangle
+this.head.strokeColor = 'black';
+this.head.add(new Point(40, 90));
+this.head.add(new Point(90, 40));
+this.head.add(new Point(140, 90));
+
+this.head.closed = true;
+     
 
 		this.path = new Path({
 			strokeColor: 'pink',
@@ -146,20 +161,16 @@ var Swimmers = Base.extend({
 		this.head.position = this.position;
         // this.head.rotation = this.vector.angle;
         this.head.rotation = 0
+        this.head2.position = this.position; ///giant fish movement
+        // this.head.rotation = this.vector.angle;
+        this.head2.rotation = 0
 	},
 
-	// We accumulate a new acceleration each time based on three rules
-	flock: function(swimmers) {
-		var separation = this.separate(swimmers) * 3;
-		var alignment = this.align(swimmers);
-		var cohesion = this.cohesion(swimmers);
-		this.acceleration += separation + alignment + cohesion;
-	},
 
 	update: function() {
-		// Update velocity
+		// velocity
 		this.vector += this.acceleration;
-		// Limit speed (vector#limit?)
+		// speed max
 		this.vector.length = Math.min(this.maxSpeed, this.vector.length);
 		this.position += this.vector;
 		// Reset acceleration to 0 each cycle
@@ -169,10 +180,11 @@ var Swimmers = Base.extend({
 
 	borders: function() {
 		var vector = new Point();
-		var position = this.position - 120.2; ///where the spermys
+		var position = this.position  
 		var radius = this.radius;
-		var size = view.size;
-		if (position.x < -radius) vector.x = size.width + radius;
+        var size = view.size;
+        ///////// these lines generate new spermys so they dont all just disappear
+		if (position.x < -radius) vector.x = size.width + radius; 
 		if (position.y < -radius) vector.y = size.height + radius;
 		if (position.x > size.width + radius) vector.x = -size.width -radius;
 		if (position.y > size.height + radius) vector.y = -size.height -radius;
@@ -182,7 +194,8 @@ var Swimmers = Base.extend({
 			for (var i = 0; i < this.amount; i++) {
 				segments[i].point += vector;
 			}
-		}
+        }
+        /////////////////////////
 	}
 
 
@@ -191,13 +204,6 @@ var Swimmers = Base.extend({
 
 var swimmers = [];
 
-
-
-            // creates the background images(circles)
-            for(var i = 0; i <= 100; i++) {
-                var square = new Path.Circle(new Point(view.size.width, view.size.height) * Point.random(), randomNumber(0.5, 7)) // (center point, radius)
-                fish.push(circle) //push circle variable into fish array
-            }
 
 // Add the swimmers:
 for (var i = 0; i < 20; i++) { //number of spermys
@@ -232,7 +238,7 @@ function onFrame(event) {
 
 }
 
-///////////////////////////////
+//////////////////////////////////////////////////////////
     // surface 
 // amount of segment points
 var amount = 4;
