@@ -58,29 +58,29 @@
             }
     
             // regenerates background images once they float off screen
-            function onFrame(event) {
-                for(var i = 0; i < fish.length; i++) {
-                    fish[i].translate(fish[i].rate, 0)
-                        if(fish[i].position.x > view.size.width) {
-                            fish[i].position.x = 0;
-                        } else if(fish[i].position.x < 0 ) {
-                            fish[i].position.x = view.size.width;
-                        }
-                }
-            }
+            // function onFrame(event) {
+            //     for(var i = 0; i < fish.length; i++) {
+            //         fish[i].translate(fish[i].rate, 0)
+            //             if(fish[i].position.x > view.size.width) {
+            //                 fish[i].position.x = 0;
+            //             } else if(fish[i].position.x < 0 ) {
+            //                 fish[i].position.x = view.size.width;
+            //             }
+            //     }
+            // }
 ////////////////////////////////////////////////////////////////
 //spermy fish
 var Swimmers = Base.extend({
 	initialize: function(position, maxSpeed, maxForce) {
 		var strength = Math.random() * .25;
-		this.acceleration = new Point();
-		this.vector = Point.random() * 2- 1;
+		this.acc = new Point();
+		this.route = Point.random() * 2 - 1;
 		this.position = position.clone();
 		this.radius = 150;
 		this.maxSpeed = maxSpeed + strength;
 		this.maxForce = maxForce + strength ;
 		this.amount = strength * 8 + 8;
-		this.count = 0;
+		this.count = 1;
 		this.createItems();
 	},
 
@@ -92,24 +92,26 @@ var Swimmers = Base.extend({
 	},
 
 	tail: function() {
-		var segments = this.path.segments,
-			shortSegments = this.shortPath.segments;
-		var speed = this.vector.length;
-		var pieceLength = 5 + speed / 3;
+
+		var speed = this.route.length;
+		var pieceLength = 4 + speed / 3;
 		var point = this.position;
-		segments[0].point = shortSegments[0].point = point;
+		var segments = this.path.segments;
+		var	smallSegPath = this.shortPath.segments;
+		
+		segments[0].point = smallSegPath[0].point = point;
 		//  goes other way than movement
-		var lastVector = -this.vector;
+		var prevRoute = -this.route;
 		for (var i = 1; i < this.amount; i++) {
-			var vector = segments[i].point - point-1;
+			var route = segments[i].point - point-1;
 			this.count += speed * 5;
 			var wave = Math.sin((this.count + i * 5) / 400);
-			var sway = lastVector.rotate(50).normalize(wave);
-			point += lastVector.normalize(pieceLength) + sway;
+			var sway = prevRoute.rotate(50).normalize(wave);
+			point += prevRoute.normalize(pieceLength) + sway;
 			segments[i].point = point;
 			if (i < 3)
-				shortSegments[i].point = point;
-			lastVector = vector;
+				smallSegPath[i].point = point;
+			prevRoute = route;
         }
         
 		this.path.smooth();
@@ -117,7 +119,8 @@ var Swimmers = Base.extend({
 
     
 	createItems: function() {
-    /////head shape 
+ 
+	   /////head shape 
         this.head2 = 
        // new Path({ ////giant fish
 	    //          segments: [[40, 100], [40, 143], [60,125], [70, 125],
@@ -128,14 +131,17 @@ var Swimmers = Base.extend({
 			   
 		// 	  ],
             new Path.RegularPolygon({
-            center: [10, 10],
-            sides: 5,
-            radius: 7,
+            center: [0, 0],
+            sides: 3,
+            radius: 9,
             fillColor: '#ee5d6c',
-            opacity: .9
+			opacity: .9,
+	
+
+
+
             // });
             });
-
            
 
 //             this.head = new Path(); ///little empty triangle
@@ -151,7 +157,8 @@ var Swimmers = Base.extend({
         
         new Path({
 			strokeColor: 'pink',
-			strokeWidth: 1,
+			strokeWidth: 2,
+			strokeLength: 12,
 			strokeCap: 'round'
 		});
 		for (var i = 0; i < this.amount; i++)
@@ -164,43 +171,46 @@ var Swimmers = Base.extend({
 		});
 		for (var i = 0; i < Math.min(3, this.amount); i++)
 			this.shortPath.add(new Point());
+
+	
+
 	},
 
 	moveHead: function() {
 		// this.head.position = this.position;
-        // this.head2.rotation = this.vector.angle;
+        // this.head2.rotation = this.route.angle;
         // this.head.rotation = 0
         this.head2.position = this.position; ///giant fish movement
-        // this.head.rotation = this.vector.angle;
+        // this.head.rotation = this.route.angle;
         this.head2.rotation = 0
 	},
 
 
 	update: function() {
 		// velocity
-		this.vector += this.acceleration;
+		this.route += this.acc;
 		// speed max
-		this.vector.length = Math.min(this.maxSpeed, this.vector.length);
-		this.position += this.vector;
-		// Reset acceleration to 0 each cycle
-		this.acceleration = new Point();
+		this.route.length = Math.min(this.maxSpeed, this.route.length);
+		this.position += this.route;
+		// Reset acc to 0 each cycle
+		this.acc = new Point();
 	},
 
 
 	borders: function() {
-		var vector = new Point();
+		var route = new Point();
 		var position = this.position  
 		var radius = this.radius;
         var size = view.size;
         ///////// these lines generate new spermys so they dont all just disappear
-		if (position.x < -radius) vector.x = size.width + radius; 
-		if (position.y < -radius) vector.y = size.height + radius;
-		if (position.x > size.width + radius) vector.x = -size.width -radius;
-		if (position.y > size.height + radius) vector.y = -size.height -radius;
-		if (!vector.isZero()) {
-			this.position += vector;
+		if (position.x < -radius) route.x = size.width + radius; 
+		if (position.y < -radius) route.y = size.height + radius;
+		if (position.x > size.width + radius) route.x = -size.width -radius;
+		if (position.y > size.height + radius) route.y = -size.height -radius;
+		if (!route.isZero()) {
+			this.position += route;
 			for (var i = 0; i < this.amount; i++) {
-				this.path.segments[i].point += vector;
+				this.path.segments[i].point += route;
 			}
         }
         /////////////////////////
@@ -237,9 +247,9 @@ function onFrame(event) {
     for (var i = 0; i <= amount; i++) {
 		var segment = path.segments[i];
 		// A cylic value between -1 and 1
-		var sinus = Math.sin(event.time * 3 + i);
+		var wave = Math.sin(event.time * 3 + i);
 		// changes the y position of the segment point
-		segment.point.y = sinus * height + 35;
+		segment.point.y = wave * height + 35;
 	}
 	// to smooth the path
     path.smooth();
@@ -259,7 +269,10 @@ var path = new Path({
     strokeColor: "#3D76E0",
     // opacity: .9,
 	strokeWidth: 120,
-    strokeCap: 'circle',
+	strokeCap: 'circle',
+	shadowColor: new Color(0, 0, 1),
+    shadowBlur: 1,
+    shadowOffset: new Point(1, 1)
 });
 
 
