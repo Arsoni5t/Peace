@@ -74,73 +74,82 @@ var Swimmers = Base.extend({
 	initialize: function(position, maxSpeed, maxForce) {
 		var strength = Math.random() * .25;
 		this.acceleration = new Point();
-		this.vector = Point.random() * 2 - 1;
+		this.vector = Point.random() * 2- 1;
 		this.position = position.clone();
-		this.radius = 50;
+		this.radius = 150;
 		this.maxSpeed = maxSpeed + strength;
-		this.maxForce = maxForce + strength;
+		this.maxForce = maxForce + strength ;
 		this.amount = strength * 8 + 8;
 		this.count = 0;
 		this.createItems();
 	},
 
 	run: function(swimmers) {
-		this.lastLoc = this.position.clone();
 		this.borders();
 		this.update();
-		// this.tail();
+		this.tail();
 		this.moveHead();
 	},
 
-	// tail: function() {
-	// 	var segments = this.path.segments,
-	// 		shortSegments = this.shortPath.segments;
-	// 	var speed = this.vector.length;
-	// 	var pieceLength = 2 + speed / 3;
-	// 	var point = this.position;
-	// 	segments[0].point = shortSegments[0].point = point;
-	// 	//  goes other way than movement
-	// 	var lastVector = -this.vector;
-	// 	for (var i = 1; i < this.amount; i++) {
-	// 		var vector = segments[i].point - point-1;
-	// 		this.count += speed * 5;
-	// 		var wave = Math.sin((this.count + i * 5) / 900);
-	// 		var sway = lastVector.rotate(50).normalize(wave);
-	// 		point += lastVector.normalize(pieceLength) + sway;
-	// 		segments[i].point = point;
-	// 		if (i < 3)
-	// 			shortSegments[i].point = point;
-	// 		lastVector = vector;
-	// 	}
-	// 	this.path.smooth();
-	// },
+	tail: function() {
+		var segments = this.path.segments,
+			shortSegments = this.shortPath.segments;
+		var speed = this.vector.length;
+		var pieceLength = 5 + speed / 3;
+		var point = this.position;
+		segments[0].point = shortSegments[0].point = point;
+		//  goes other way than movement
+		var lastVector = -this.vector;
+		for (var i = 1; i < this.amount; i++) {
+			var vector = segments[i].point - point-1;
+			this.count += speed * 5;
+			var wave = Math.sin((this.count + i * 5) / 400);
+			var sway = lastVector.rotate(50).normalize(wave);
+			point += lastVector.normalize(pieceLength) + sway;
+			segments[i].point = point;
+			if (i < 3)
+				shortSegments[i].point = point;
+			lastVector = vector;
+        }
+        
+		this.path.smooth();
+	},
 
     
 	createItems: function() {
-     
-		this.head2 = new Path({ ////giant fish
-	            segments: [[40, 20], [40, 150], [150,80], [170, 40], 
-			   [300,60], [300, 140], [170 ,140], [150, 80],
-			   [39,19]
-			  ],
-            // new Path.RegularPolygon({
-            // center: [10, 10],
-            // sides: 5,
-            radius: 3,
-            fillColor: 'black'
+    /////head shape 
+        this.head2 = 
+       // new Path({ ////giant fish
+	    //          segments: [[40, 100], [40, 143], [60,125], [70, 125],
+		// 	   [90, 140], [105, 140],[115,135], [120, 130],
+		// 	   [120, 127], [124, 127], [124, 122], [120, 122],
+		// 	   [115, 118],[108, 110],[102, 108], [92, 108], 
+		// 	   [87, 110],[75, 115],[60,115], [40, 100]
+			   
+		// 	  ],
+            new Path.RegularPolygon({
+            center: [10, 10],
+            sides: 5,
+            radius: 7,
+            fillColor: '#ee5d6c',
+            opacity: .9
             // });
             });
 
-            this.head = new Path(); ///little empty triangle
-this.head.strokeColor = 'black';
-this.head.add(new Point(40, 90));
-this.head.add(new Point(90, 40));
-this.head.add(new Point(140, 90));
+           
 
-this.head.closed = true;
+//             this.head = new Path(); ///little empty triangle
+// this.head.strokeColor = 'black';
+// this.head.add(new Point(40, 90));
+// this.head.add(new Point(90, 40));
+// this.head.add(new Point(140, 90));
+
+// this.head.closed = true;
      
-
-		this.path = new Path({
+//////tail shape
+        this.path =
+        
+        new Path({
 			strokeColor: 'pink',
 			strokeWidth: 1,
 			strokeCap: 'round'
@@ -150,7 +159,7 @@ this.head.closed = true;
 
 		this.shortPath = new Path({
 			strokeColor: 'pink',
-			strokeWidth: 1,
+			strokeWidth: 5,
 			strokeCap: 'round'
 		});
 		for (var i = 0; i < Math.min(3, this.amount); i++)
@@ -158,9 +167,9 @@ this.head.closed = true;
 	},
 
 	moveHead: function() {
-		this.head.position = this.position;
-        // this.head.rotation = this.vector.angle;
-        this.head.rotation = 0
+		// this.head.position = this.position;
+        // this.head2.rotation = this.vector.angle;
+        // this.head.rotation = 0
         this.head2.position = this.position; ///giant fish movement
         // this.head.rotation = this.vector.angle;
         this.head2.rotation = 0
@@ -190,9 +199,8 @@ this.head.closed = true;
 		if (position.y > size.height + radius) vector.y = -size.height -radius;
 		if (!vector.isZero()) {
 			this.position += vector;
-			var segments = this.path.segments;
 			for (var i = 0; i < this.amount; i++) {
-				segments[i].point += vector;
+				this.path.segments[i].point += vector;
 			}
         }
         /////////////////////////
