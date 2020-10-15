@@ -1,11 +1,30 @@
-// addEventListener('resize', () => {
-//   canvas.width = innerWidth
-//   canvas.height = innerHeight
-// })
-    
 
 
-    //'fish circles'
+window.onresize = function(){ location.reload(); }
+
+// 
+
+
+
+
+// var dolphin = [];
+// for(let i = 0; i < 18; i++) {
+// 	dolphin[i] = new Image();
+// 	dolphin[i].src = "https://webfilms-films.s3.amazonaws.com/dolphin/"+i+".gif"
+// }
+// var dolphin = [];
+// var size = new Size(10, 5);
+// var raster = new Raster({
+//     source: 'https://webfilms-films.s3.amazonaws.com/dolphin.gif',
+// 	position: [250,400],
+// 	size: [125,70],
+// });
+
+// var raster = new paper.Raster({
+//   source: crag_image, //notice here
+//   position: paper.view.center
+// });
+///////////'fish circles'
         var fish = [];
         var velocity = 2; 
 
@@ -17,15 +36,22 @@
             // creates the background images(circles)
             for(var i = 0; i <= 100; i++) {
                 var circle = new Path.Circle(new Point(view.size.width, view.size.height) * Point.random(), randomNumber(0.5, 7)) // (center point, radius)
-                fish.push(circle) //push circle variable into fish array
+				fish.push(circle) //push circle variable into fish array
+					circle.onKeyDown = function(event) { ////removes with click
+						if (event.key == 'space') {
+							this.remove();
+						}
+        					
+    				}
             }
 
+		
             //assigns random colors
             for(var i = 0; i <= 100; i++) { 
                 var colorSetter = Math.random();
 
                 if(colorSetter >= .9) {
-                    fish[i].fillColor = "black";
+					fish[i].fillColor = "black";
                 } else if(colorSetter >= .8) {
                     fish[i].fillColor = "grey";
                 } else (fish[i].fillColor = "white")
@@ -43,44 +69,20 @@
             assignRate()
             
 
-            // key press to speed up background
-            function onKeyDown(event) {
-                if(event.key == 'f') {
-                    velocity++;
-                    assignRate();
-                }
-
-                //key press to slow down background
-                 if(event.key == 's') {
-                    velocity--;
-                    assignRate();
-                }
-            }
     
-            // regenerates background images once they float off screen
-            // function onFrame(event) {
-            //     for(var i = 0; i < fish.length; i++) {
-            //         fish[i].translate(fish[i].rate, 0)
-            //             if(fish[i].position.x > view.size.width) {
-            //                 fish[i].position.x = 0;
-            //             } else if(fish[i].position.x < 0 ) {
-            //                 fish[i].position.x = view.size.width;
-            //             }
-            //     }
-            // }
 ////////////////////////////////////////////////////////////////
 //spermy fish
 var Swimmers = Base.extend({
-	initialize: function(position, maxSpeed, maxForce) {
+	initialize: function(position, topSpeed, topPower) {
 		var strength = Math.random() * .25;
+		this.amount = strength * 8 + 8;
+		this.topPower = topPower + strength ;
+		this.topSpeed = topSpeed + strength;
 		this.acc = new Point();
 		this.route = Point.random() * 2 - 1;
 		this.position = position.clone();
-		this.radius = 150;
-		this.maxSpeed = maxSpeed + strength;
-		this.maxForce = maxForce + strength ;
-		this.amount = strength * 8 + 8;
 		this.count = 1;
+		this.radius = 150;
 		this.createItems();
 	},
 
@@ -119,70 +121,69 @@ var Swimmers = Base.extend({
 
     
 	createItems: function() {
- 
-	   /////head shape 
-        this.head2 = 
-       // new Path({ ////giant fish
-	    //          segments: [[40, 100], [40, 143], [60,125], [70, 125],
-		// 	   [90, 140], [105, 140],[115,135], [120, 130],
-		// 	   [120, 127], [124, 127], [124, 122], [120, 122],
-		// 	   [115, 118],[108, 110],[102, 108], [92, 108], 
-		// 	   [87, 110],[75, 115],[60,115], [40, 100]
-			   
-		// 	  ],
-            new Path.RegularPolygon({
-            center: [0, 0],
-            sides: 3,
-            radius: 9,
-            fillColor: '#ee5d6c',
-			opacity: .9,
-	
-
-
-
-            // });
-            });
-           
-
-//             this.head = new Path(); ///little empty triangle
-// this.head.strokeColor = 'black';
-// this.head.add(new Point(40, 90));
-// this.head.add(new Point(90, 40));
-// this.head.add(new Point(140, 90));
-
-// this.head.closed = true;
-     
-//////tail shape
+		
+		
+		//////tail shape
         this.path =
         
         new Path({
-			strokeColor: 'pink',
+			strokeColor: 'gray',
 			strokeWidth: 2,
 			strokeLength: 12,
 			strokeCap: 'round'
 		});
 		for (var i = 0; i < this.amount; i++)
-			this.path.add(new Point());
-
+		this.path.add(new Point());
+		
 		this.shortPath = new Path({
-			strokeColor: 'pink',
+			strokeColor: 'gray',
 			strokeWidth: 5,
+			strokeLength: 1,
 			strokeCap: 'round'
 		});
+
+
 		for (var i = 0; i < Math.min(3, this.amount); i++)
-			this.shortPath.add(new Point());
-
-	
-
+		this.shortPath.add(new Point());
+		var topLeft = view.center - [7, 7];
+	    var bottomRight = view.center + [11, 11];
+	   
+//////////////////////head shape 
+			   this.head2 = 
+			  // new Path({ ////giant fish
+			   //          segments: [[40, 100], [40, 143], [60,125], [70, 125],
+			   // 	   [90, 140], [105, 140],[115,135], [120, 130],
+			   // 	   [120, 127], [124, 127], [124, 122], [120, 122],
+			   // 	   [115, 118],[108, 110],[102, 108], [92, 108], 
+			   // 	   [87, 110],[75, 115],[60,115], [40, 100]
+					  
+			   // 	  ],
+				   new Path.Rectangle({
+				   topLeft: topLeft,
+				   bottomRight: bottomRight,
+				   fillColor: {
+					   gradient: {
+						   stops: ['black', 'grey', 'white']
+					   },
+					   origin: topLeft,
+					   destination: bottomRight
+				   },
+				   opacity: .9,
+				   radius: 3
+				   });
+				   
+		
+		
+		
 	},
-
+	
 	moveHead: function() {
 		// this.head.position = this.position;
         // this.head2.rotation = this.route.angle;
         // this.head.rotation = 0
         this.head2.position = this.position; ///giant fish movement
         // this.head.rotation = this.route.angle;
-        this.head2.rotation = 0
+        this.head2
 	},
 
 
@@ -190,7 +191,7 @@ var Swimmers = Base.extend({
 		// velocity
 		this.route += this.acc;
 		// speed max
-		this.route.length = Math.min(this.maxSpeed, this.route.length);
+		this.route.length = Math.min(this.topSpeed, this.route.length);
 		this.position += this.route;
 		// Reset acc to 0 each cycle
 		this.acc = new Point();
@@ -213,15 +214,32 @@ var Swimmers = Base.extend({
 				this.path.segments[i].point += route;
 			}
         }
-        /////////////////////////
 	}
-
-
 });
 
 
-var swimmers = [];
 
+
+           //// key press to speed up background
+            function onKeyDown(event) {
+
+                // if(event.key == 'f') {
+                //     velocity++;
+                //     assignRate();
+                // }
+
+                //key press to slow down background
+                 if(event.key == 's') {
+                    velocity--;
+                    assignRate();
+                }
+			}
+			
+
+
+
+
+var swimmers = [];
 
 // Add the swimmers:
 for (var i = 0; i < 20; i++) { //number of spermys
@@ -230,32 +248,17 @@ for (var i = 0; i < 20; i++) { //number of spermys
 }
 
 
-function onFrame(event) {
-	for (var i = 0, l = swimmers.length; i < l; i++) {
-		swimmers[i].run(swimmers);
-    }
-    for(var i = 0; i < fish.length; i++) {
-        fish[i].translate(fish[i].rate, 0)
-            if(fish[i].position.x > view.size.width) {
-                fish[i].position.x = 0;
-            } else if(fish[i].position.x < 0 ) {
-                fish[i].position.x = view.size.width;
-            }
-        }
 
-        //surface animation
-    for (var i = 0; i <= amount; i++) {
-		var segment = path.segments[i];
-		// A cylic value between -1 and 1
-		var wave = Math.sin(event.time * 3 + i);
-		// changes the y position of the segment point
-		segment.point.y = wave * height + 35;
-	}
-	// to smooth the path
-    path.smooth();
 
-}
+var text = new PointText({
+    point: [50, 50],
+    content: 'Programmed by: Brad Larson',
+    fillColor: 'white',
+    fontFamily: 'Courier New',
+    fontWeight: 'bold',
+	fontSize: 25, 
 
+});
 //////////////////////////////////////////////////////////
     // surface 
 // amount of segment points
@@ -279,4 +282,68 @@ var path = new Path({
 // Add 5 segment points to the path spread out over the width of the view
 for (var i = 0; i <= amount; i++) {
 	path.add(new Point(i / amount, 1) * view.size);
+}
+
+
+var raster = new Raster({
+    source: './../assets/images/dolphinright/0.gif',
+	position: [250,400],
+	smoothing: true
+});
+
+raster.onMouseDrag = function(event) {
+	raster.position += event.delta;
+}
+
+var text = new PointText({
+    point: [50, 50],
+    content: 'Programmed by: Brad Larson',
+    fillColor: 'white',
+    fontFamily: 'Courier New',
+    fontWeight: 'bold',
+	fontSize: 20, 
+	opacity: .8,
+	angle: 25,
+	shadowColor: new Color(0,0,0),
+    // Set the shadow blur radius to 12:
+    shadowBlur: 5,
+    // Offset the shadow by { x: 5, y: 5 }
+    shadowOffset: new Point(2, 4)
+});
+
+
+function onFrame(event) {
+	
+	///////////////tamponys on frame
+	for (var i = 0, l = swimmers.length; i < l; i++) {
+		swimmers[i].run(swimmers);
+	}
+	////////////fish circles on frame
+    for(var i = 0; i < fish.length; i++) {
+		fishy = fish[i]
+        fishy.translate(fishy.rate, 0)
+            if(fishy.position.x > view.size.width) {
+                fishy.position.x = 0;
+            } else if(fishy.position.x < 0 ) {
+                fishy.position.x = view.size.width;
+			}
+		//   if (event.count % 2 === 0) {
+		// 		fishy.rotate(25);
+  		// 	  } else if (event.count % 1 === 0) {
+		// 		fishy.rotate(-25);
+  		// 	}
+
+		}
+	// for(var i = 0; i < fish.length; i += 3) {
+	// 	fish[i].scale(.999)
+	// }
+	///////////water surface on frame	
+    for (var i = 0; i <= amount; i++) {
+		var segment = path.segments[i];
+		var wave = Math.sin(event.time * 3 + i);
+		segment.point.y = wave * height + 35;
+	}
+
+
+    path.smooth();
 }
