@@ -1,4 +1,4 @@
-
+// import * as paper from 'paper'
 
 window.onresize = function(){ location.reload(); }
 
