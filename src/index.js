@@ -6,7 +6,8 @@ window.onresize = function(){ location.reload(); }
 ////////////////////////////////////////////////////
 ///////////FISH CIRCLES
         var fish = [];
-        var velocity = -5;  ////// velocity of background
+		var velocity = -5;  ////// velocity of background
+		var resetSpeed = velocity;
 
 ////////////////function to randomly choose the size of the background images
             function randomNumber(min,max) {
@@ -15,16 +16,13 @@ window.onresize = function(){ location.reload(); }
 
 /////////////// creates the background images(circles)
             for(var i = 0; i <= 100; i++) {
-                var circle = new Path.Circle(new Point(view.size.width, view.size.height) * Point.random(), randomNumber(0.5, 7)) // (center point, radius)
+                var circle = new Path.Circle(new Point(view.size.width, view.size.height) * Point.random(), randomNumber(15, 28)) // (center point, radius)
 				fish.push(circle) //push circle variable into fish array
-					circle.onKeyDown = function(event) { ////removes with click
-						if (event.key == 'space') {
+					circle.onMouseEnter = function(event) { ////removes with click
 							this.remove();
 						}
-        					
-    				}
             }
-
+			
 ////////////////assigns random colors
             for(var i = 0; i <= 100; i++) { 
                 var colorSetter = Math.random();
@@ -57,6 +55,12 @@ window.onresize = function(){ location.reload(); }
                  if(event.key == 's') {
                     velocity--;
                     assignRate();
+				} else if(event.key == 'r') {
+					velocity = -5;
+					assignRate();
+				} else if(event.key == 'n'){
+					velocity = 1;
+					assignRate();
 				}
 				
 			}
@@ -95,7 +99,7 @@ var Stingrays = Base.extend({
 		var speed = this.route.length;
 		var pieceLength = 4 + speed / 3;
 		var point = this.position;
-		var segments = this.path.segments;
+		var segments =  this.path.segments;
 		var	smallSegPath = this.shortPath.segments;
 		
 		segments[0].point = smallSegPath[0].point = point;
@@ -354,19 +358,20 @@ for (var i = 0; i < 10; i++) { //number of jellyfish
 ////////////////////////////////////////////////////
 ///////////////////////////DOLPHIN
 	// for(var i = 0; i < 18; i++){
-		var raster = new Raster({
-    	source: './../assets/images/dolphinright/'+0+'.gif',
-		position: [550,400],
-		smoothing: true,
-		});
+		// var raster = new Raster({
+    	// source: './../assets/images/dolphinright/'+0+'.gif',
+		// position: [550,400],
+		// smoothing: true,
+		// });
 		// if(i==17) {
 		// 	i=0; continue;
 		// }
 	// }
 ////////////DOLPHIN MOVEMENT
-raster.onMouseDrag = function(event) {
-	raster.position += event.delta;
-}
+
+// raster.onMouseDrag = function(event) {
+// 	raster.position += event.delta;
+// }
 
 
 ////////////////////////////////////////////////////
@@ -388,7 +393,7 @@ var path = new Path({
 });
 
 for (var i = 0; i <= amount; i++) {
-	path.add(new Point(i / amount, 1) * view.size);
+	path.add(new Point(i / amount, 1) * view.size * 2.5);
 }
 
 ///////////TEXT
@@ -425,8 +430,11 @@ function onFrame(event) {
                 fishy.position.x = 0;
             } else if(fishy.position.x < 0 ) {
                 fishy.position.x = view.size.width;
+			} else if(fishy.position.y < 130 ) {
+                fishy.position.y = view.size.height;
 			}
 		}
+		
 //////////////////////jellyfish on frame	
 	for(var i = 0; i < jellyfish.length; i++) {
 		jellyfish[i].run(jellyfish);
@@ -439,5 +447,8 @@ function onFrame(event) {
 	}
 
 
-    path.smooth();
+	path.smooth();
+	
 }
+
+
