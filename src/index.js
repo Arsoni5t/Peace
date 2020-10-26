@@ -16,7 +16,7 @@ window.onresize = function(){ location.reload(); }
 
 /////////////// creates the background images(circles)
             for(var i = 0; i <= 100; i++) {
-                var circle = new Path.Circle(new Point(view.size.width, view.size.height) * Point.random(), randomNumber(15, 28)) // (center point, radius)
+                var circle = new Path.Circle(new Point(view.size.width, view.size.height) * Point.random(), randomNumber(4, 10)) // (center point, radius)
 				fish.push(circle) //push circle variable into fish array
 					circle.onMouseEnter = function(event) { ////removes with click
 							this.remove();
@@ -219,9 +219,9 @@ for (var i = 0; i < 20; i++) { //number of stingrays
 var Jellyfish = Base.extend({
 	initialize: function(position, topSpeed, topPower) {
 		var strength = Math.random() * .25;
-		this.amount = strength * 8 + 8;
+		this.amount = strength * 8 + 30;
 		this.topPower = topPower + strength ;
-		this.topSpeed = topSpeed + strength;
+		this.topSpeed = topSpeed + strength - 6;
 		this.acc = new Point();
 		this.route = Point.random() * 2 - 1;
 		this.position = position.clone();
@@ -230,7 +230,7 @@ var Jellyfish = Base.extend({
 		this.createItems();
 	},
 
-	run: function(jellyfish) {
+	run: function() {
 		this.borders();
 		this.update();
 		this.tail();
@@ -274,25 +274,27 @@ var Jellyfish = Base.extend({
         
         new Path({
 			strokeColor: 'gray',
-			strokeWidth: 0,
-			strokeLength: 0,
+			strokeWidth: 1,
+			strokeLength: 1,
 			strokeCap: 'round',
-			opacity: 0
+			opacity: 1
 		});
 		for (var i = 0; i < this.amount; i++)
 		this.path.add(new Point());
 		
 		this.shortPath = new Path({
 			strokeColor: 'gray',
-			strokeWidth: 0,
-			strokeLength: 0,
+			strokeWidth: 1,
+			strokeLength: 1,
 			strokeCap: 'round',
-			opacity: 0
+			opacity: 1
 		});
 
 
 		for (var i = 0; i < Math.min(3, this.amount); i++)
-        this.shortPath.add(new Point());
+		this.shortPath.add(new Point());
+		
+	
    
 //////////////////////JELLYFISH HEAD 
 
@@ -313,7 +315,7 @@ var Jellyfish = Base.extend({
 		// this.jelly.rotation = this.route.angle;
 		this.jelly.rotation = 0;
         this.jelly.position = this.position; 
-        // this.jelly
+        this.jelly
 	},
 
 
