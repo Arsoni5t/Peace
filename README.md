@@ -8,23 +8,22 @@ I went to school in Hawaii and fell in love with snorkeling.
 The water is a place I find peace and serenity and I want to recreate that using JS and HTML5.
 
 ## Functionality
-Random fish will be swimming around  in the background and foreground, upon button presses, the user will be able to add fish that swim through the scene.
+User will navigate a dolphin sprite around a moving ocean scenescape and clean up the debris so only fish are left in the ocean.
 
 ## MVPs 
      In Peace, users will be able to: 
-     * View a variety of tropical fish swimming around.
+     * View a variet of implied fish objects swimming around.
 
-     * Create fish with the tap of a keyboard button. 
-         * Different buttons will generate different kinds/colors of fish
+     * Increase and decrease the speed of the background movement. 
          
-     * Listen to calming, ambient sounds.
+     * Move animated dolphin sprite and eliminate trash objects out of the water.
 
 ## Wireframe
 ![](https://webfilms-films.s3.amazonaws.com/ezgif.com-gif-maker.gif)
 
 ## Architecture and Technology
      * Use paper.js to create animations of fish swimming in the water
-     * Howler.js will be implemented for audio
+     * JavaScript and CSS animations to move the dolphin sprite around the canvas window
 
 ## Implementation Timeline
     DAY 1:
