@@ -21,7 +21,6 @@ Random fish will be swimming around  in the background and foreground, upon butt
 
 ## Wireframe
 ![](https://webfilms-films.s3.amazonaws.com/ezgif.com-gif-maker.gif)
-![](https://webfilms-films.s3.amazonaws.com/ezgif.com-gif-maker.gif)
 
 ## Architecture and Technology
      * Use paper.js to create animations of fish swimming in the water
