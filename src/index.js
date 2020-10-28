@@ -18,7 +18,7 @@ window.onresize = function(){ location.reload(); }
             for(var i = 0; i <= 100; i++) {
                 var circle = new Path.Circle(new Point(view.size.width, view.size.height) * Point.random(), randomNumber(4, 10)) // (center point, radius)
 				fish.push(circle) //push circle variable into fish array
-					circle.onMouseEnter = function(event) { ////removes with click
+					circle.onMouseEnter = function(event) { ////removes with hover
 							this.remove();
 						}
             }
@@ -453,4 +453,11 @@ function onFrame(event) {
 	
 }
 
+var audio = document.getElementById('background_audio');
 
+document.getElementById('mute').addEventListener('click', function (e)
+{
+    e = e || window.event;
+    audio.muted = !audio.muted;
+    e.preventDefault();
+}, false);

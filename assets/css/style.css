@@ -6,13 +6,14 @@ body, html {
     margin: 0;
     /* margin: 100px 0 0 0; */
     padding: 0;
-    
+    background-image: linear-gradient(180deg, #ce4993 5%, #ee5d6c 7%,#fb9062 4.8%);
+    background-color: #fb9062;
+    background-repeat: no-repeat;
 }
 
 body {
-    /* width: 100vw; */
+
     height: 99%;
-    background-image: linear-gradient(180deg, #ce4993 5%, #ee5d6c 6.3%,#fb9062 .8%);
     background-repeat: no-repeat;
 }
 
@@ -23,7 +24,7 @@ canvas {
     margin-top: 62px;
     /* width: 100%;
     height: 97.15%; */
-    width: 100%;
+    width: 80%;
     height: auto;
     display: block;
     margin-left: auto;
@@ -79,7 +80,12 @@ canvas {
   100% {cursor: url(../images/dolphinright/17.gif)60 35, auto;}
 }
 
+.leftist{
+  margin-left: 200px;
+}
+
 a{
+    text-align: center;
     font-family: FreeMono;
     font-style: italic;
     margin-left: 50px;
@@ -88,9 +94,11 @@ a{
     text-decoration: none;
     opacity: .65;
     text-shadow: 2px 2px 5px black;
+     
+  /* margin: auto; */
 }
 
-a p{
+/* a p{
     font-family: FreeMono;
     font-style: italic;
     margin-left: 50px;
@@ -100,6 +108,5 @@ a p{
     opacity: .65;
     text-shadow: 2px 2px 5px black;
     cursor: pointer;
-}
-
+} */
 
