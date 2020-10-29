@@ -434,6 +434,8 @@ function onFrame(event) {
                 fishy.position.x = view.size.width;
 			} else if(fishy.position.y < 130 ) {
                 fishy.position.y = view.size.height;
+			}else if(fishy.position.y > 750 ) {
+                fishy.position.y = 330;
 			}
 		}
 		

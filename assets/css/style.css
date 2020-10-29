@@ -5,7 +5,8 @@ body, html {
     /* height: 100%; */
     margin: 0;
     /* margin: 100px 0 0 0; */
-    padding: 0;
+    padding-top: 7px;
+    margin-bottom: 3px;
     background-image: linear-gradient(180deg, #ce4993 5%, #ee5d6c 7%,#fb9062 4.8%);
     background-color: #fb9062;
     background-repeat: no-repeat;
@@ -88,12 +89,13 @@ a{
     text-align: center;
     font-family: FreeMono;
     font-style: italic;
-    margin-left: 50px;
+    margin-left: 350px;
     font-size: 17px;
     color: white;
     text-decoration: none;
     opacity: .65;
     text-shadow: 2px 2px 5px black;
+     padding-top: 10px;
      
   /* margin: auto; */
 }
@@ -109,4 +111,12 @@ a{
     text-shadow: 2px 2px 5px black;
     cursor: pointer;
 } */
-
+img{
+  display: block;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    margin-bottom: auto;
+    width: 25%;
+    padding-bottom: 100px;
+}
