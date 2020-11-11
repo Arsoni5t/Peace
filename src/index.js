@@ -16,7 +16,7 @@ window.onresize = function(){ location.reload(); }
 
 /////////////// creates the background images(circles)
             for(var i = 0; i <= 100; i++) {
-                var circle = new Path.Circle(new Point(view.size.width, view.size.height) * Point.random(), randomNumber(4, 10)) // (center point, radius)
+                var circle = new Path.Circle(new Point(view.size.width, view.size.height) * Point.random(), randomNumber(8, 14)) // (center point, radius)
 				fish.push(circle) //push circle variable into fish array
 					circle.onMouseEnter = function(event) { ////removes with hover
 							this.remove();

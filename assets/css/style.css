@@ -32,53 +32,53 @@ canvas {
     margin-right: auto;
     justify-content: center;
     margin-bottom: auto;
-    cursor: url(../images/dolphinright/0.gif) 60 35, auto;
+    cursor: url(../images/dolphinright/0.gif) 107 38, auto;
       -webkit-animation: cursor 400ms infinite;
         animation: cursor 400ms infinite;
 }
 
 @-webkit-keyframes cursor {
- 0% {cursor: url(../images/dolphinright/0.gif) 60 35, auto;}
-  5.55% {cursor: url(../images/dolphinright/0.gif) 60 35, auto;}
-  11% {cursor: url(../images/dolphinright/1.gif) 60 35, auto;}
-  16.55% {cursor: url(../images/dolphinright/2.gif) 60 35, auto;}
-  22% {cursor: url(../images/dolphinright/3.gif) 60 35, auto;}
-  27.55% {cursor: url(../images/dolphinright/4.gif) 60 35, auto;}
-  33% {cursor: url(../images/dolphinright/5.gif) 60 35, auto;}
-  38.55% {cursor: url(../images/dolphinright/6.gif) 60 35, auto;}
-  44% {cursor: url(../images/dolphinright/7.gif)60 35, auto;}
-  49.55% {cursor: url(../images/dolphinright/8.gif)60 35, auto;}
-  55% {cursor: url(../images/dolphinright/9.gif)60 35, auto;}
-    60.55% {cursor: url(../images/dolphinright/10.gif)60 35, auto;}
-  66% {cursor: url(../images/dolphinright/11.gif)60 35, auto;}
-  71.55% {cursor: url(../images/dolphinright/12.gif)60 35, auto;}
-  77% {cursor: url(../images/dolphinright/13.gif)60 35, auto;}
-  82.55% {cursor: url(../images/dolphinright/14.gif)60 35, auto;}
-    88% {cursor: url(../images/dolphinright/15.gif)60 35, auto;}
-  93.55% {cursor: url(../images/dolphinright/16.gif)60 35, auto;}
-  100% {cursor: url(../images/dolphinright/17.gif)60 35, auto;}
+ 0% {cursor: url(../images/dolphinright/0.gif) 107 38, auto;}
+  5.55% {cursor: url(../images/dolphinright/0.gif) 107 38, auto;}
+  11% {cursor: url(../images/dolphinright/1.gif) 107 38, auto;}
+  16.55% {cursor: url(../images/dolphinright/2.gif) 107 38, auto;}
+  22% {cursor: url(../images/dolphinright/3.gif) 107 38, auto;}
+  27.55% {cursor: url(../images/dolphinright/4.gif) 107 38, auto;}
+  33% {cursor: url(../images/dolphinright/5.gif) 107 38, auto;}
+  38.55% {cursor: url(../images/dolphinright/6.gif) 107 38, auto;}
+  44% {cursor: url(../images/dolphinright/7.gif)107 38, auto;}
+  49.55% {cursor: url(../images/dolphinright/8.gif)107 38, auto;}
+  55% {cursor: url(../images/dolphinright/9.gif)107 38, auto;}
+    60.55% {cursor: url(../images/dolphinright/10.gif)107 38, auto;}
+  66% {cursor: url(../images/dolphinright/11.gif)107 38, auto;}
+  71.55% {cursor: url(../images/dolphinright/12.gif)107 38, auto;}
+  77% {cursor: url(../images/dolphinright/13.gif)107 38, auto;}
+  82.55% {cursor: url(../images/dolphinright/14.gif)107 38, auto;}
+    88% {cursor: url(../images/dolphinright/15.gif)107 38, auto;}
+  93.55% {cursor: url(../images/dolphinright/16.gif)107 38, auto;}
+  100% {cursor: url(../images/dolphinright/17.gif)107 38, auto;}
 } 
 
 @keyframes cursor {
-    0% {cursor: url(../images/dolphinright/0.gif) 60 35, auto;}
-  5.55% {cursor: url(../images/dolphinright/0.gif) 60 35, auto;}
-  11% {cursor: url(../images/dolphinright/1.gif) 60 35, auto;}
-  16.55% {cursor: url(../images/dolphinright/2.gif) 60 35, auto;}
-  22% {cursor: url(../images/dolphinright/3.gif) 60 35, auto;}
-  27.55% {cursor: url(../images/dolphinright/4.gif) 60 35, auto;}
-  33% {cursor: url(../images/dolphinright/5.gif) 60 35, auto;}
-  38.55% {cursor: url(../images/dolphinright/6.gif) 60 35, auto;}
-  44% {cursor: url(../images/dolphinright/7.gif)60 35, auto;}
-  49.55% {cursor: url(../images/dolphinright/8.gif)60 35, auto;}
-  55% {cursor: url(../images/dolphinright/9.gif)60 35, auto;}
-    60.55% {cursor: url(../images/dolphinright/10.gif)60 35, auto;}
-  66% {cursor: url(../images/dolphinright/11.gif)60 35, auto;}
-  71.55% {cursor: url(../images/dolphinright/12.gif)60 35, auto;}
-  77% {cursor: url(../images/dolphinright/13.gif)60 35, auto;}
-  82.55% {cursor: url(../images/dolphinright/14.gif)60 35, auto;}
-    88% {cursor: url(../images/dolphinright/15.gif)60 35, auto;}
-  93.55% {cursor: url(../images/dolphinright/16.gif)60 35, auto;}
-  100% {cursor: url(../images/dolphinright/17.gif)60 35, auto;}
+    0% {cursor: url(../images/dolphinright/0.gif) 107 38, auto;}
+  5.55% {cursor: url(../images/dolphinright/0.gif) 107 38, auto;}
+  11% {cursor: url(../images/dolphinright/1.gif) 107 38, auto;}
+  16.55% {cursor: url(../images/dolphinright/2.gif) 107 38, auto;}
+  22% {cursor: url(../images/dolphinright/3.gif) 107 38, auto;}
+  27.55% {cursor: url(../images/dolphinright/4.gif) 107 38, auto;}
+  33% {cursor: url(../images/dolphinright/5.gif) 107 38, auto;}
+  38.55% {cursor: url(../images/dolphinright/6.gif) 107 38, auto;}
+  44% {cursor: url(../images/dolphinright/7.gif)107 38, auto;}
+  49.55% {cursor: url(../images/dolphinright/8.gif)107 38, auto;}
+  55% {cursor: url(../images/dolphinright/9.gif)107 38, auto;}
+    60.55% {cursor: url(../images/dolphinright/10.gif)107 38, auto;}
+  66% {cursor: url(../images/dolphinright/11.gif)107 38, auto;}
+  71.55% {cursor: url(../images/dolphinright/12.gif)107 38, auto;}
+  77% {cursor: url(../images/dolphinright/13.gif)107 38, auto;}
+  82.55% {cursor: url(../images/dolphinright/14.gif)107 38, auto;}
+    88% {cursor: url(../images/dolphinright/15.gif)107 38, auto;}
+  93.55% {cursor: url(../images/dolphinright/16.gif)107 38, auto;}
+  100% {cursor: url(../images/dolphinright/17.gif)107 38, auto;}
 }
 
 .leftist{
