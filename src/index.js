@@ -2,81 +2,6 @@
 
 window.onresize = function(){ location.reload(); }
 
-// var clicks = 0;
-//     function onClick() {
-//         clicks += 1;
-//         document.getElementById("clicks").innerHTML = clicks;
-//     };
-////////////////////////////////////////////////////
-///////////FISH CIRCLES
-        var fish = [];
-		var velocity = -5;  ////// velocity of background
-		var resetSpeed = velocity;
-
-////////////////function to randomly choose the size of the background images
-            function randomNumber(min,max) {
-                return Math.floor(Math.random() * (max - min + 1) + min);
-            }
-
-/////////////// creates the background images(circles)
-            for(var i = 0; i <= 100; i++) {
-				var clicks = 101;
-                var circle = new Path.Circle(new Point(view.size.width, view.size.height) * Point.random(), randomNumber(20, 20)) // (center point, radius)
-				fish.push(circle) //push circle variable into fish array
-					circle.onMouseDown = function(event) { ////removes with hover
-							this.remove();
-							clicks -= 1;
-        document.getElementById("clicks").innerHTML = clicks;
-						}
-            }
-			
-////////////////assigns random colors
-            for(var i = 0; i <= 100; i++) { 
-                var colorSetter = Math.random();
-                if(colorSetter >= .9) {
-					fish[i].fillColor = "black";
-                } else if(colorSetter >= .8) {
-                    fish[i].fillColor = "grey";
-                } else (fish[i].fillColor = "white")
-            }
-
-/////////////// function that determines the velocity of the background images
-             function assignRate() {
-                for(var i = 0; i < fish.length; i++) {
-                var assignedRate = Math.random() * velocity -1
-                fish[i].rate = assignedRate;
-                }
-			}
-/////////////////////////////// run the random velocity function
-////////////////ON KEY VELOCITY
-
-           //// key press to speed up background
-            function onKeyDown(event) {
-
-            //     // if(event.key == 'f') {
-            //     //     velocity++;
-            //     //     assignRate();
-            //     // }
-
-            //     ////key press to slow down background
-                 if(event.key == 's') {
-                    velocity--;
-                    assignRate();
-				} else if(event.key == 'r') {
-					velocity = -5;
-					assignRate();
-				} else if(event.key == 'n'){
-					velocity = 1;
-					assignRate();
-				}
-				
-			}
-			
-
-/////////////////////////////////////////////////////////
-			 assignRate()
-
- 
 ////////////////////////////////////////////////////////////////
 ///////////////////STINGRAYS
 var Stingrays = Base.extend({
@@ -383,6 +308,87 @@ for (var i = 0; i < 10; i++) { //number of jellyfish
 // }
 
 
+
+// var clicks = 0;
+//     function onClick() {
+//         clicks += 1;
+//         document.getElementById("clicks").innerHTML = clicks;
+//     };
+////////////////////////////////////////////////////
+///////////FISH CIRCLES
+        var fish = [];
+		var velocity = -5;  ////// velocity of background
+		var resetSpeed = velocity;
+
+////////////////function to randomly choose the size of the background images
+            function randomNumber(min,max) {
+                return Math.floor(Math.random() * (max - min + 1) + min);
+            }
+
+/////////////// creates the background images(circles)
+            for(var i = 0; i <= 100; i++) {
+				var clicks = 101;
+                var circle = new Path.Circle(new Point(view.size.width, view.size.height) * Point.random(), randomNumber(20, 30)) // (center point, radius)
+				fish.push(circle) //push circle variable into fish array
+					circle.onMouseDown = function(event) { ////removes with hover
+							this.remove();
+							clicks -= 1;
+        document.getElementById("clicks").innerHTML = clicks;
+						}
+
+						
+			}
+			
+			
+////////////////assigns random colors
+            for(var i = 0; i <= 100; i++) { 
+                var colorSetter = Math.random();
+                if(colorSetter >= .9) {
+					fish[i].fillColor = "black";
+                } else if(colorSetter >= .8) {
+                    fish[i].fillColor = "grey";
+                } else (fish[i].fillColor = "white")
+            }
+
+/////////////// function that determines the velocity of the background images
+             function assignRate() {
+                for(var i = 0; i < fish.length; i++) {
+                var assignedRate = Math.random() * velocity -1
+                fish[i].rate = assignedRate;
+                }
+			}
+/////////////////////////////// run the random velocity function
+////////////////ON KEY VELOCITY
+
+           //// key press to speed up background
+            function onKeyDown(event) {
+
+            //     // if(event.key == 'f') {
+            //     //     velocity++;
+            //     //     assignRate();
+            //     // }
+
+            //     ////key press to slow down background
+                 if(event.key == 's') {
+                    velocity--;
+                    assignRate();
+				} else if(event.key == 'r') {
+					velocity = -5;
+					assignRate();
+				} else if(event.key == 'n'){
+					velocity = 1;
+					assignRate();
+				}
+				
+			}
+			
+
+/////////////////////////////////////////////////////////
+			 assignRate()
+
+ 
+
+
 ////////////////////////////////////////////////////
 ////////////////////// SURFACE
 // amount of segment points
@@ -421,17 +427,24 @@ var text = new PointText({
     shadowOffset: new Point(2, 4)
 });
 
+
+
 ///////////////////////////////////////////////
 ////////////////////////////////////////////
 /////////////ANIMATION
 
 
 function onFrame(event) {
-	
 ///////////////////stingrays on frame
 	for (var i = 0; i < stingrays.length; i++) {
 		stingrays[i].run(stingrays);
-	}
+	}	
+
+//////////////////////jellyfish on frame	
+	for(var i = 0; i < jellyfish.length; i++) {
+		jellyfish[i].run(jellyfish);
+	}	
+
 ////////////////fish circles on frame
     for(var i = 0; i < fish.length; i++) {
 		fishy = fish[i]
@@ -446,11 +459,7 @@ function onFrame(event) {
                 fishy.position.y = 330;
 			}
 		}
-		
-//////////////////////jellyfish on frame	
-	for(var i = 0; i < jellyfish.length; i++) {
-		jellyfish[i].run(jellyfish);
-	}
+
 ////////////////////water surface on frame	
     for (var i = 0; i <= amount; i++) {
 		var segment = path.segments[i];

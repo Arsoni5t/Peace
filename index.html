@@ -19,11 +19,15 @@
 <a href="https://www.linkedin.com/in/bradlarsoncode/">LinkedIn</a><br> -->
 <a className="p" href="">
   Instructions: Navigate Peace the
-  dolphin with your mouse to clean up all the plastic in the ocean. 
+  dolphin with your mouse and 'click' to clean up all the plastic in the ocean. 
   Tap 's' to go faster, 'r' to reset speed</a>
 <a href="#noscroll" id="mute">Toggle sound on/off</a>
   <!-- <canvas id="layer1" width="100" height="100" style="position: absolute; left: 0; top: 0; z-index: 10;"></canvas> -->
-      <canvas id="myCanvas"></canvas>
+  <div id="plastics">
+    <p>Plastic Remaining: <p id="clicks"> 101</p>
+  </p>
+  </div>
+  <canvas id="myCanvas"></canvas>
 
 <audio id="background_audio" autoplay="autoplay">
   <source src="https://webfilms-films.s3.amazonaws.com/dolphin/water.mp3" />
@@ -34,10 +38,12 @@
  
 <img src="./assets/images/key.png">
 </div>
-<div id="plastics"><h1>Plastic Remaining: <p id="clicks">101</p></h1></div>
-<a href="http://www.bradlarson.me">Portfolio</a>
+<div id="links">
+  <a href="http://www.bradlarson.me">Portfolio</a>
 <a href="https://github.com/Arsoni5t/Peace">GitHub</a>
 <a href="https://www.linkedin.com/in/bradlarsoncode/">LinkedIn</a><br>
+</div>
+
 </body>
 
 </html>
