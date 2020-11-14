@@ -2,7 +2,11 @@
 
 window.onresize = function(){ location.reload(); }
 
-
+// var clicks = 0;
+//     function onClick() {
+//         clicks += 1;
+//         document.getElementById("clicks").innerHTML = clicks;
+//     };
 ////////////////////////////////////////////////////
 ///////////FISH CIRCLES
         var fish = [];
@@ -16,10 +20,13 @@ window.onresize = function(){ location.reload(); }
 
 /////////////// creates the background images(circles)
             for(var i = 0; i <= 100; i++) {
-                var circle = new Path.Circle(new Point(view.size.width, view.size.height) * Point.random(), randomNumber(8, 14)) // (center point, radius)
+				var clicks = 101;
+                var circle = new Path.Circle(new Point(view.size.width, view.size.height) * Point.random(), randomNumber(20, 20)) // (center point, radius)
 				fish.push(circle) //push circle variable into fish array
-					circle.onMouseEnter = function(event) { ////removes with hover
+					circle.onMouseDown = function(event) { ////removes with hover
 							this.remove();
+							clicks -= 1;
+        document.getElementById("clicks").innerHTML = clicks;
 						}
             }
 			
@@ -417,6 +424,7 @@ var text = new PointText({
 ///////////////////////////////////////////////
 ////////////////////////////////////////////
 /////////////ANIMATION
+
 
 function onFrame(event) {
 	

@@ -5,13 +5,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.11.5/paper-full.min.js"
     integrity="sha512-rylCjbPC9xpPMYM3j0aKZxEglt7FMFu2dohHhmF/Sp/sCr3HaBUFUI9NwSX3XeeF8dUhqd3DMsVO2HXy6XoQTw=="
     crossorigin="anonymous"></script>
-  <script type="text/paperscript" src="./src/index.js" canvas="myCanvas"></script>
+  <script type="text/paperscript" src="./src/index.js" canvas="myCanvas">
+  </script>
   <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
     <link rel="icon" type="image/png" href="favicon.ico"/>
     <title>Peace</title>
 </head>
  
-<body>
+<body >
  
 <!-- <a href="http://www.bradlarson.me">Portfolio</a>
 <a href="https://github.com/Arsoni5t/Peace">GitHub</a>
@@ -21,7 +22,7 @@
   dolphin with your mouse to clean up all the plastic in the ocean. 
   Tap 's' to go faster, 'r' to reset speed</a>
 <a href="#noscroll" id="mute">Toggle sound on/off</a>
-
+  <!-- <canvas id="layer1" width="100" height="100" style="position: absolute; left: 0; top: 0; z-index: 10;"></canvas> -->
       <canvas id="myCanvas"></canvas>
 
 <audio id="background_audio" autoplay="autoplay">
@@ -32,8 +33,8 @@
 <div className="key">
  
 <img src="./assets/images/key.png">
-
 </div>
+<div id="plastics"><h1>Plastic Remaining: <p id="clicks">101</p></h1></div>
 <a href="http://www.bradlarson.me">Portfolio</a>
 <a href="https://github.com/Arsoni5t/Peace">GitHub</a>
 <a href="https://www.linkedin.com/in/bradlarsoncode/">LinkedIn</a><br>

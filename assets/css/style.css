@@ -18,6 +18,10 @@ body {
     background-repeat: no-repeat;
 }
 
+p{
+  margin-top: 10px;
+}
+
 canvas {
     background: teal;
     background-image: linear-gradient(180deg,#3D76E0, #00FEEF, #09EBEE, #19CEEB, #28ACEA, #388EE9, #3D76E0, blue);
@@ -119,4 +123,21 @@ img{
     margin-bottom: auto;
     width: 25%;
     padding-bottom: 100px;
+}
+
+.foreground{
+background-color: black;
+z-index: 1;
+width: 100%;
+height: 100%;
+}
+
+#plastics{
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    /* margin: 0px; */
+    margin-top: -90px;
 }
