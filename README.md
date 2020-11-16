@@ -1,34 +1,37 @@
 Welcome to the Peace wiki!
 
 ## Background and Overview
-The objective of this project is to create a relaxing, interactive environment.
-
-I went to school in Hawaii and fell in love with snorkeling.
-
-The water is a place I find peace and serenity and I want to recreate that using JS and HTML5.
+Peace is a visually appealing and thought provoking interactive game where the user navigates a dolphin through an ocean scene and cleans up the plastic pollution. 
 
 ## Functionality
-User will navigate a dolphin sprite around a moving ocean scenescape and clean up the debris so only fish are left in the ocean.
+User will navigate a dolphin sprite around a moving ocean scene scape and while the sprite comes in contact with a piece of plastic, will remove the item with a mouse click.
 
 ## MVPs 
      In Peace, users will be able to: 
-     * View a variet of implied fish objects swimming around.
+     * Maneuver Peace, our hero dolphin, around the Canvas ocean scene
 
-     * Increase and decrease the speed of the background movement. 
+     * On mouse click, while Peace's snout is hovering over the plastic pieces, remove the item from the ocean
          
-     * Move animated dolphin sprite and eliminate trash objects out of the water.
+     * Observe the total remaining pieces of plastic decrease as they are removed from the Canvas
 
-## Wireframe
+     * Mute the environmental ocean sounds
+
+## Game Screen
+Gameplay sample:
 ![](https://webfilms-films.s3.amazonaws.com/ezgif.com-gif-maker.gif)
 
+Key:
+![](https://webfilms-films.s3.amazonaws.com/key+copy.png)
+
 ## Architecture and Technology
-     * Use paper.js to create animations of fish swimming in the water
-     * JavaScript and CSS animations to move the dolphin sprite around the canvas window
+     * Use Canvas, Paper.js and PaperScript to create animations of fish-like objects swimming in the water
+     * Custom CSS cursor to move and animate the dolphin swimming around the Canvas window
+     * Implement PaperScript's mouse handler's to remove objects on click
 
 ## Implementation Timeline
     DAY 1:
      Setup paper.js files, webpack and ensure everything is working harmoniously. 
-        * Read docs about using Paperscript in sync with paper.js 
+        * Read docs about using PaperScript in sync with paper.js 
         * Render AI 'fish' in foreground and background. 
             * Begin by using basic circles or rectangles to test movement and animation
             * Once speed, and random movements work, redesign to make look more 'fish-like' 
@@ -38,17 +41,18 @@ User will navigate a dolphin sprite around a moving ocean scenescape and clean u
      Color background and fish to create realistic environment using scss
           
     DAY 3:
-     Map keys so user key presses will generate fish movement across the screen
-         * paper.js docs provide instructions for key mapping and events
-         * fish should come out at different velocities and go in different directions based on the key press
+     Map mouse handler so user clicks will remove plastic from the screen
+         * paper.js docs provide instructions for mapping and events
+         * countdown remaining items as they are removed
      
     DAY 4: 
      Continue mapping, if necessary
-     Use howler.js to add sound elements and controls to the user interface. 
-         * user should be able to control volume 
-         * various choices for ambient sound user can select
+     Use html5 audio tag to bring ambient sound to the game
+         * user should be able to mute sound effects 
+     Clean up and style as necessary
          
 ## Bonus features
-     * collision detection? 
-     * Turtles
      * Ripples on the water surface
+     * Peace health bar that decreases if he touches tentacles/barbs of the other fish
+     * Draw Turtles
+     
