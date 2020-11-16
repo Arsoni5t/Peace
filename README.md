@@ -20,7 +20,7 @@ User will navigate a dolphin sprite around a moving ocean scene scape and while 
 ### Gameplay sample:
 ![](https://webfilms-films.s3.amazonaws.com/ezgif.com-gif-maker.gif)
 
-###Key:
+### Key:
 ![](https://webfilms-films.s3.amazonaws.com/key+copy.png)
 
 ## Architecture and Technology
