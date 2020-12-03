@@ -10,7 +10,7 @@ User will navigate a dolphin sprite around a moving ocean scene scape and while 
      In Peace, users will be able to: 
      * Maneuver Peace, our hero dolphin, around the Canvas ocean scene
 
-     * On mouse click, while Peace's snout is hovering over the plastic pieces, remove the item from the ocean
+     * On mouse click, while Peace's snout is hovering over the plastic, remove the item from ocean
          
      * Observe the total remaining pieces of plastic decrease as they are removed from the Canvas
 
@@ -24,7 +24,7 @@ User will navigate a dolphin sprite around a moving ocean scene scape and while 
 ![](https://webfilms-films.s3.amazonaws.com/key+copy.png)
 
 ## Architecture and Technology
-     * Use Canvas, Paper.js and PaperScript to create animations of fish-like objects swimming in the water
+     * Use Canvas, Paper.js and PaperScript to create animations of fish-like objects swimming 
      * Custom CSS cursor to move and animate the dolphin swimming around the Canvas window
      * Implement PaperScript's mouse handler's to remove objects on click
 
