@@ -1,5 +1,3 @@
-// import * as paper from 'paper'
-
 window.onresize = function(){ location.reload(); }
 
 ////////////////////////////////////////////////////////////////
@@ -99,11 +97,7 @@ var Stingrays = Base.extend({
 	},
 	
 	moveHead: function() {
-		// this.head.position = this.position;
-        // this.head2.rotation = this.route.angle;
-        // this.head.rotation = 0
         this.head2.position = this.position; ///giant fish movement
-        // this.head.rotation = this.route.angle;
         this.head2
 	},
 
@@ -199,8 +193,7 @@ var Jellyfish = Base.extend({
 ///////////////////////////////////////
 ////////////CREATE ITEMS JELLYFISH    
 	createItems: function() {
-		
-		
+			
 ///////////////////////tail shape
         this.path =
         
@@ -244,7 +237,6 @@ var Jellyfish = Base.extend({
 
 
 	moveHead: function() {
-		// this.jelly.rotation = this.route.angle;
 		this.jelly.rotation = 0;
         this.jelly.position = this.position; 
         this.jelly
@@ -290,31 +282,6 @@ for (var i = 0; i < 10; i++) { //number of jellyfish
 }
 
 ////////////////////////////////////////////////////
-///////////////////////////DOLPHIN
-	// for(var i = 0; i < 18; i++){
-		// var raster = new Raster({
-    	// source: './../assets/images/dolphinright/'+0+'.gif',
-		// position: [550,400],
-		// smoothing: true,
-		// });
-		// if(i==17) {
-		// 	i=0; continue;
-		// }
-	// }
-////////////DOLPHIN MOVEMENT
-
-// raster.onMouseDrag = function(event) {
-// 	raster.position += event.delta;
-// }
-
-
-
-// var clicks = 0;
-//     function onClick() {
-//         clicks += 1;
-//         document.getElementById("clicks").innerHTML = clicks;
-//     };
-////////////////////////////////////////////////////
 ///////////FISH CIRCLES
         var fish = [];
 		var velocity = -5;  ////// velocity of background
@@ -333,13 +300,10 @@ for (var i = 0; i < 10; i++) { //number of jellyfish
 					circle.onMouseDown = function(event) { ////removes with hover
 							this.remove();
 							clicks -= 1;
-        document.getElementById("clicks").innerHTML = clicks;
-						}
-
-						
+        					document.getElementById("clicks").innerHTML = clicks;
+						}					
 			}
-			
-			
+					
 ////////////////assigns random colors
             for(var i = 0; i <= 100; i++) { 
                 var colorSetter = Math.random();
@@ -357,17 +321,12 @@ for (var i = 0; i < 10; i++) { //number of jellyfish
                 fish[i].rate = assignedRate;
                 }
 			}
+
 /////////////////////////////// run the random velocity function
 ////////////////ON KEY VELOCITY
 
            //// key press to speed up background
             function onKeyDown(event) {
-
-            //     // if(event.key == 'f') {
-            //     //     velocity++;
-            //     //     assignRate();
-            //     // }
-
             //     ////key press to slow down background
                  if(event.key == 's') {
                     velocity--;
@@ -382,12 +341,8 @@ for (var i = 0; i < 10; i++) { //number of jellyfish
 				
 			}
 			
-
 /////////////////////////////////////////////////////////
 			 assignRate()
-
- 
-
 
 ////////////////////////////////////////////////////
 ////////////////////// SURFACE
@@ -427,12 +382,9 @@ var text = new PointText({
     shadowOffset: new Point(2, 4)
 });
 
-
-
 ///////////////////////////////////////////////
 ////////////////////////////////////////////
 /////////////ANIMATION
-
 
 function onFrame(event) {
 ///////////////////stingrays on frame
@@ -472,11 +424,10 @@ function onFrame(event) {
 	
 }
 
-var audio = document.getElementById('background_audio');
+	var audio = document.getElementById('background_audio');
 
-document.getElementById('mute').addEventListener('click', function (e)
-{
+	document.getElementById('mute').addEventListener('click', function (e) {
     e = e || window.event;
     audio.muted = !audio.muted;
-    e.preventDefault();
-}, false);
+    e.preventDefault();	
+	}, false);
